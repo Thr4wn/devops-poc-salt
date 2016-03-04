@@ -31,7 +31,7 @@ mri-deps:
       - libyaml-dev
       - libsqlite3-0
       - libsqlite3-dev
-      - sqlite3
+      - sqlite3 #TODO: is this really necessary for installing ruby?
       - libxml2-dev
       - libxslt1-dev
       - autoconf
@@ -60,4 +60,10 @@ rails:
     - user: root
     - require:
       - rvm: ruby-2.3.0
+
+# these are steps required for the app to run
+app-deps:
+  pkg.installed:
+    - pkgs:
+      - sqlite3
 
