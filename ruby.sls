@@ -1,10 +1,4 @@
 
-#rvm:
-  #group.present: []
-  #user.present:
-    #- gid: ubuntu
-    #- home: /home/ubuntu
-
 rvm-deps:
   pkg.installed:
     - pkgs:
@@ -48,6 +42,7 @@ mri-deps:
       - bison
       - subversion
       - ruby
+      - libgmp3-dev #required for installing binaries when doing `gem install rails` later
 
 ruby-2.3.0:
   rvm.installed:
@@ -59,4 +54,10 @@ ruby-2.3.0:
   cmd.run:
     - user: root
     - name: /srv/salt/bashrc_rvm.sh
+
+rails:
+  gem.installed:
+    - user: root
+    - require:
+      - rvm: ruby-2.3.0
 
